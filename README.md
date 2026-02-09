@@ -1,5 +1,7 @@
-# Diplomarbeit_{JAHR}: {Diplomarbeitsname}
+# Diplomarbeit_{2026/27}: {Escape the 9 to 5}
 
-Hier kommit eine kurze Beschreibung Ihrer Diplomarbeit hin, damit die Besucher Ihres Repositories wissen worum es geht.
+## Beschreibung
+In dieser Diplomarbeit geht es um die Entwicklung eines Escape-Room-Games, wo man durch Rätseln lösen das Arbeitsgebäude verlassen muss.
+
 
 Hilfe zu Benutzung dieses Templates finden Sie in der Datei [USAGE.md](USAGE.md)
