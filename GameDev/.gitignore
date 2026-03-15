@@ -17,8 +17,7 @@ MemoryCaptures/
 # =========================
 # Asset meta data (optional)
 # =========================
-!/[Aa]ssets/**/*.meta
-!/[Pp]ackages/**/*.meta
+
 
 # =========================
 # Visual Studio / Rider
