@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         playerInput = this.GetComponent<PlayerInput>();
         move= this.playerInput.actions.FindAction("Move");
         sprint = this.playerInput.actions.FindAction("Sprint");
-       
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     // Update is called once per frame
@@ -40,11 +40,10 @@ public class Player : MonoBehaviour
 
     void MovePlayer(float speed)
     {
-        Vector2 direction= move.ReadValue<Vector2>();
-        Debug.Log(direction);
-        rb.transform.position+= new Vector3(direction.x, 0, direction.y) * speed * Time.deltaTime;
+        Vector2 input = move.ReadValue<Vector2>();
+        Vector3 moveDir = (Camera.main.transform.forward * input.y + transform.right * input.x).normalized;
+        rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
     }
-
     public void setInitialSpeed(float newSpeed)
     {
         this.initialMovespeed = newSpeed;
