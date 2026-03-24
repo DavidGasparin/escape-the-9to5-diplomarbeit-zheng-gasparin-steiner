@@ -109,6 +109,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""2bc26fb4-b0cf-4ab1-8b12-e1e6dbd6a34c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -232,6 +241,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c591b1e-89d4-4bff-9045-60c0693fe9b4"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98f61096-8b69-4121-b4a9-2769b666fe77"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -242,6 +273,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Inputactions = asset.FindActionMap("Input actions", throwIfNotFound: true);
         m_Inputactions_Move = m_Inputactions.FindAction("Move", throwIfNotFound: true);
         m_Inputactions_Sprint = m_Inputactions.FindAction("Sprint", throwIfNotFound: true);
+        m_Inputactions_Look = m_Inputactions.FindAction("Look", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -324,6 +356,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<IInputactionsActions> m_InputactionsActionsCallbackInterfaces = new List<IInputactionsActions>();
     private readonly InputAction m_Inputactions_Move;
     private readonly InputAction m_Inputactions_Sprint;
+    private readonly InputAction m_Inputactions_Look;
     /// <summary>
     /// Provides access to input actions defined in input action map "Input actions".
     /// </summary>
@@ -343,6 +376,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Inputactions/Sprint".
         /// </summary>
         public InputAction @Sprint => m_Wrapper.m_Inputactions_Sprint;
+        /// <summary>
+        /// Provides access to the underlying input action "Inputactions/Look".
+        /// </summary>
+        public InputAction @Look => m_Wrapper.m_Inputactions_Look;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -375,6 +412,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
         }
 
         /// <summary>
@@ -392,6 +432,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
         }
 
         /// <summary>
@@ -446,5 +489,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSprint(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLook(InputAction.CallbackContext context);
     }
 }
