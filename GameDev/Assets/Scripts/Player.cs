@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     void MovePlayer(float speed)
     {
         Vector2 input = move.ReadValue<Vector2>();
-        Vector3 moveDir = (Camera.main.transform.forward * input.y + transform.right * input.x).normalized;
+        Vector3 moveDir = (transform.forward * input.y + transform.right * input.x).normalized;
         rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
     }
     public void setInitialSpeed(float newSpeed)
