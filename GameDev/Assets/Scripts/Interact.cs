@@ -35,7 +35,7 @@ public class Interact : MonoBehaviour
             {
                 InteractText.gameObject.SetActive(true);
 
-                // CompareTag nimmt keinen out-Parameter — statt dessen TryGetComponent verwenden
+                // CompareTag nimmt keinen out-Parameter — statt dessen TryGetComponent verwende
                 if (hit.collider != null && hit.collider.TryGetComponent<IInteractable>(out IInteractable interactObj) && interact.IsPressed())
                 {
                     interactObj.Interact();
