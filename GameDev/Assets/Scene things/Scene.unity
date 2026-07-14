@@ -119,6 +119,201 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &57338213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 57338221}
+  - component: {fileID: 57338220}
+  - component: {fileID: 57338219}
+  - component: {fileID: 57338218}
+  - component: {fileID: 57338217}
+  - component: {fileID: 57338216}
+  - component: {fileID: 57338215}
+  - component: {fileID: 57338214}
+  m_Layer: 0
+  m_Name: NotesKlaus
+  m_TagString: InteractPrefab
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &57338214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57338213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: e9e3b55daa9179e48bf3b03edd4927ec, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Input actions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!222 &57338215
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57338213}
+  m_CullTransparentMesh: 1
+--- !u!114 &57338216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57338213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72cc6e7ca83055438a33629b18daa6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoteUI
+  playerInput: {fileID: 0}
+  notePanel: {fileID: 1449984598}
+  noteText: {fileID: 433041080}
+--- !u!114 &57338217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57338213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260999ff34250444fa35d937834a5bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractWithNotes
+  noteText: "<b>Interne Arbeitsnotiz \u2013 Development Lead</b>\n<i>Erstellt von:
+    Klaus S.</i>\n<i>Datum: 20.03.2026</i>\n<i>Betreff: Server-Stabilit\xE4t / Vertraulich</i>\n\nDie
+    Server-Crashes der letzten Monate sind nicht behoben. Hab David gebeten, die
+    Logs zu l\xF6schen bevor Jiale was merkt.\n\nWir reden hier von regelm\xE4\xDFigen
+    Ausf\xE4llen im Keller-Serverraum. Immer nachts zwischen 2 und 4. Keine Ahnung
+    warum, aber ich hab keinen Bock das zu fixen.\n\nFalls der Risikomanager fragt
+    \u2013 die Logs sind <i>\"versehentlich gel\xF6scht\"</i> worden. Haltet euch
+    dran.\n\nUnd noch was: Wenn jemand von euch in den Keller geht \u2013 nicht wundern
+    wenn die Server komische Ger\xE4usche machen. Ist halt alter Kram.\n\n\u2013
+    Klaus S."
+--- !u!65 &57338218
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57338213}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &57338219
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57338213}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &57338220
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57338213}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!224 &57338221
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57338213}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -7.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 5.6, y: 0.5}
+  m_SizeDelta: {x: 2560, y: 1440}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &147176869
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +900,204 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775214897}
   m_CullTransparentMesh: 1
+--- !u!1 &805111373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 805111381}
+  - component: {fileID: 805111380}
+  - component: {fileID: 805111379}
+  - component: {fileID: 805111378}
+  - component: {fileID: 805111377}
+  - component: {fileID: 805111376}
+  - component: {fileID: 805111375}
+  - component: {fileID: 805111374}
+  m_Layer: 0
+  m_Name: NotesJan
+  m_TagString: InteractPrefab
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &805111374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805111373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: e9e3b55daa9179e48bf3b03edd4927ec, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Input actions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!222 &805111375
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805111373}
+  m_CullTransparentMesh: 1
+--- !u!114 &805111376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805111373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72cc6e7ca83055438a33629b18daa6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoteUI
+  playerInput: {fileID: 0}
+  notePanel: {fileID: 1449984598}
+  noteText: {fileID: 433041080}
+--- !u!114 &805111377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805111373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260999ff34250444fa35d937834a5bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractWithNotes
+  noteText: "<b>Interne Arbeitsnotiz \u2013 Praktikant</b>\n<i>Erstellt von: Jan
+    R.</i>\n<i>Datum: 14.03.2026</i>\n<i>Betreff: Auff\xE4llige Dinge im B\xFCro</i>\n\nSeit
+    mehreren Wochen muss ich schon die Unterlagen sortieren. Dabei ist mir aufgefallen,
+    dass einige Dinge nicht so sind, wie sie auf den ersten Blick wirken.\n\nDer
+    Platz, an dem wir unsere Informationen aufbewahren, wurde seit Jahren nicht ver\xE4ndert.
+    Trotzdem habe ich festgestellt, dass dort etwas nicht stimmt. Die Abst\xE4nde
+    sind anders als bei den restlichen Einrichtungen und die Konstruktion wirkt ungew\xF6hnlich.\n\nIch
+    habe versucht herauszufinden, warum dieser Bereich anders aufgebaut wurde. Es
+    scheint, als h\xE4tte jemand bewusst daf\xFCr gesorgt, dass bestimmte Dinge verborgen
+    bleiben.\n\nAn den zuk\xFCnftigen Praktikanten: Achte genauer auf die Dinge,
+    die im Alltag niemand hinterfragt. Manchmal befindet sich ein Geheimnis nicht
+    in den Unterlagen selbst, sondern dort, wo die Unterlagen aufbewahrt werden.\n\n\u2013
+    Jan R."
+--- !u!65 &805111378
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805111373}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &805111379
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805111373}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &805111380
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805111373}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!224 &805111381
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805111373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -7.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 2.68, y: 0.5}
+  m_SizeDelta: {x: 2560, y: 1440}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &888091060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1632,201 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1100, y: 1300}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1520149391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1520149399}
+  - component: {fileID: 1520149398}
+  - component: {fileID: 1520149397}
+  - component: {fileID: 1520149396}
+  - component: {fileID: 1520149395}
+  - component: {fileID: 1520149394}
+  - component: {fileID: 1520149393}
+  - component: {fileID: 1520149392}
+  m_Layer: 0
+  m_Name: NotesDavid
+  m_TagString: InteractPrefab
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1520149392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520149391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: e9e3b55daa9179e48bf3b03edd4927ec, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Input actions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!222 &1520149393
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520149391}
+  m_CullTransparentMesh: 1
+--- !u!114 &1520149394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520149391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72cc6e7ca83055438a33629b18daa6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoteUI
+  playerInput: {fileID: 0}
+  notePanel: {fileID: 1449984598}
+  noteText: {fileID: 433041080}
+--- !u!114 &1520149395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520149391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 260999ff34250444fa35d937834a5bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractWithNotes
+  noteText: "<b>Interne Arbeitsnotiz \u2013 Backend Development</b>\n<i>Erstellt
+    von: David G.</i>\n<i>Datum: 21.03.2026</i>\n<i>Betreff: Keller-Logs / Vertraulich</i>\n\nKlaus
+    hat mich gebeten, die Server-Logs zu <i>\"bereinigen\"</i>. Klar, mach ich \u2013
+    aber ich bin doch nicht bl\xF6d.\n\nHab mir vorher Kopien gezogen. Die Fehlercodes
+    sind f\xFCr die Passwortberechnung essentiell, schlie\xDFlich hab ich die programmiert.\n\nHab
+    damals ne einfache Methode genommen \u2013 jede Zahl wird einzeln aufgel\xF6st
+    und dann zusammengef\xFChrt. Wollte nicht, dass der Risikomanager da durchblickt.
+    Manche Kollegen checken ja nichtmal, dass ne <color=#FFAA00>102</color> aus <color=#FFAA00>1,
+    0 und 2</color> besteht.\n\nNaja, wer's braucht \u2013 die Logs sind eh gel\xF6scht.
+    Offiziell zumindest.\n\n\u2013 David G.\n<i>Backend Developer</i>"
+--- !u!65 &1520149396
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520149391}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1520149397
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520149391}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1520149398
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520149391}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!224 &1520149399
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520149391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -7.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 5.6, y: 0.5}
+  m_SizeDelta: {x: 2560, y: 1440}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1701703102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1844,7 @@ GameObject:
   - component: {fileID: 1701703105}
   - component: {fileID: 1701703112}
   m_Layer: 0
-  m_Name: Notes
+  m_Name: NotesJiale
   m_TagString: InteractPrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1297,19 +1885,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 260999ff34250444fa35d937834a5bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractWithNotes
-  noteText: "<b>Interne Arbeitsnotiz \u2013 Abteilung Verwaltung </b>\nErstellt von:
-    Jan R.\nDatum: 14.03.2026\n\nSeit mehreren Wochen \xFCberpr\xFCfe ich die alten
-    Unterlagen im Archivbereich. Dabei ist mir aufgefallen, dass einige Dinge nicht
-    so sind, wie sie auf den ersten Blick wirken.\n\nDer Platz, an dem wir t\xE4glich
-    unsere Informationen aufbewahren, wurde seit Jahren nicht ver\xE4ndert. Trotzdem
-    habe ich festgestellt, dass dort etwas nicht stimmt. Die Abst\xE4nde sind anders
-    als bei den restlichen Einrichtungen und die Konstruktion wirkt ungew\xF6hnlich.\n\nIch
-    habe versucht herauszufinden, warum dieser Bereich anders aufgebaut wurde. Es
-    scheint, als h\xE4tte jemand bewusst daf\xFCr gesorgt, dass bestimmte Dinge verborgen
-    bleiben.\n\nFalls diese Notiz jemals jemand anderes liest: Achten Sie genauer
-    auf die Dinge, die im Alltag niemand hinterfragt. Manchmal befindet sich ein
-    Geheimnis nicht in den Unterlagen selbst, sondern dort, wo die Unterlagen aufbewahrt
-    werden.\n\n\u2013 Jan R."
+  noteText: "<b>Interne Arbeitsnotiz \u2013 Risikomanagement</b>\n<i>Erstellt von:
+    Jiale Z.</i>\n<i>Datum: 18.03.2026</i>\n<i>Betreff: Serverprobleme</i>\n\nHab
+    bei den Server-Checks was Merkw\xFCrdiges entdeckt. Der Zugangscode f\xFCr den
+    Keller wurde nie ge\xE4ndert \u2013 seit 7 Jahren nicht.\n\nHab die alten Logs
+    durchforstet und die originale Code-Notiz gefunden. Total verstrahlt geschrieben,
+    aber ich hab's entziffert:\n\n<i>\"Das Passwort wird mit den Fehlercodes berechnet\"</i>\n\nKeine
+    Ahnung was das hei\xDFt. In den Logs hab ich 5 Fehlercodes gefunden, wozu haben
+    wir eigentlich eine IT Abteilung.\n\nDie komischen Codes waren: <color=#FF4444><b>102,
+    204, 305, 107, 223</b></color>\n\n\u2013 Jiale Z."
 --- !u!65 &1701703108
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1404,7 +1988,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5.6, y: 0.5}
+  m_AnchoredPosition: {x: 8.37, y: 0.5}
   m_SizeDelta: {x: 2560, y: 1440}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1701703112
@@ -1839,5 +2423,8 @@ SceneRoots:
   - {fileID: 458697594}
   - {fileID: 1227832576}
   - {fileID: 1701703111}
+  - {fileID: 805111381}
+  - {fileID: 57338221}
+  - {fileID: 1520149399}
   - {fileID: 888091064}
   - {fileID: 896971113}
