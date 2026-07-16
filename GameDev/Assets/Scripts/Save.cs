@@ -20,8 +20,8 @@ public class Save : MonoBehaviour
     InputAction close;
 
 
-    private int ersteZiffer = 0;
-    private int zweiteZiffer = 0;
+    private int firstNumber = 0;
+    private int secoundNumber = 0;
 
 
     private void Awake()
@@ -37,7 +37,7 @@ public class Save : MonoBehaviour
         close = playerInput.actions.FindAction("Close");
     }
 
-    public void Oeffnen()
+    public void OpenSave()
     {
         uiPanel.SetActive(true);
         feedbackText.text = "";
@@ -49,21 +49,21 @@ public class Save : MonoBehaviour
 
     public void Plus(int stelle)
     {
-        if (stelle == 0) ersteZiffer = (ersteZiffer + 1) % 10;
-        else zweiteZiffer = (zweiteZiffer + 1) % 10;
-        Aktualisieren();
+        if (stelle == 0) firstNumber = (firstNumber + 1) % 10;
+        else secoundNumber = (secoundNumber + 1) % 10;
+        UpdateSave();
     }
 
     public void Minus(int stelle)
     {
-        if (stelle == 0) ersteZiffer = (ersteZiffer - 1 + 10) % 10;
-        else zweiteZiffer = (zweiteZiffer - 1 + 10) % 10;
-        Aktualisieren();
+        if (stelle == 0) firstNumber = (firstNumber - 1 + 10) % 10;
+        else secoundNumber = (secoundNumber - 1 + 10) % 10;
+        UpdateSave();
     }
 
-    public void Bestaetigen()
+    public void Accept()
     {
-        if ($"{ersteZiffer}{zweiteZiffer}" == richtigerPin)
+        if ($"{firstNumber}{secoundNumber}" == richtigerPin)
         {
             feedbackText.text = "Geöffnet!";
             feedbackText.color = Color.green;
@@ -73,11 +73,11 @@ public class Save : MonoBehaviour
             feedbackText.text = "Falsch!";
             feedbackText.color = Color.red;
         }
-        Aktualisieren();
+        UpdateSave();
     } 
-    void Aktualisieren()
+    void UpdateSave()
     {
-        screenPin.text = $"{ersteZiffer}{zweiteZiffer}";
+        screenPin.text = $"{firstNumber}{secoundNumber}";
     }
 
     void Update()

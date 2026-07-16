@@ -15,7 +15,7 @@ public class InteractWithSave : MonoBehaviour, Interactable
     public void Interact()
     {
         Debug.Log(" Interact wurde aufgerufen auf: " + gameObject.name);
-        save.Oeffnen();
+        save.OpenSave();
     }
 
     public void setCanInteract(bool value)
