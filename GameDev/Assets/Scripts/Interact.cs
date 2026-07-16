@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using System;
 
 
 public class Interact : MonoBehaviour
@@ -23,7 +24,7 @@ public class Interact : MonoBehaviour
     void Update()
     {
         InteractText.gameObject.SetActive(false); 
-        if (NoteUI.Instance != null && NoteUI.Instance.IsNoteActive())
+        if (NoteUI.Instance != null && InteractableActive())
         {
             return; 
         }
@@ -48,6 +49,17 @@ public class Interact : MonoBehaviour
                 }
             }
         }
+    }
+
+  private bool InteractableActive()
+    {
+        if (NoteUI.Instance != null && NoteUI.Instance.IsNoteActive())
+            return true;
+
+        if (Save.Instance != null && Save.Instance.IsNoteActive())
+            return true;
+
+        return false;
     }
 
 }

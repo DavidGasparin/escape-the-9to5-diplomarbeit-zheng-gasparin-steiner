@@ -27,7 +27,7 @@ public class NoteUI : MonoBehaviour
 
 
         Instance = this;
-        close = this.playerInput.actions.FindAction("Close");
+        close = playerInput.actions.FindAction("Close");
         notePanel.SetActive(false);
        
     }

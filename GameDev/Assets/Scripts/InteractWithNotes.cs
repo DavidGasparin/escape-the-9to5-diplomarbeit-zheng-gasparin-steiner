@@ -2,26 +2,29 @@ using UnityEngine;
 
 public class InteractWithNotes : MonoBehaviour, Interactable
 {
-    public static bool hasReadNotes = true;
+    public static bool canInteract = true;
+    private int increment = 1;
 
     [TextArea]
     public string noteText;
 
     public bool CanInteract()
     {
-        return hasReadNotes;
+        return canInteract;
     }
     public void Interact()
     {
         Debug.Log(" Interact wurde aufgerufen auf: " + gameObject.name);
         NoteUI.Instance.ShowNote(noteText);
-        hasReadNotes = true;
-        InteractWithBookshelf.hasReadNotes = true;
+
+        // counter um 1 erhöhen
+        InteractionWithBookshelf.incrementCounter(increment);
+        increment = 0;
     }
 
     public void setCanInteract(bool value)
     {
-        hasReadNotes = value;
+        canInteract = value;
     }
 }
 
