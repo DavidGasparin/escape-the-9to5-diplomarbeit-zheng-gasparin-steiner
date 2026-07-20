@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     InputAction sprint;
     bool isFrozen = false;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is createdd
     void Start()
     {
@@ -27,26 +28,32 @@ public class Player : MonoBehaviour
         playerInput = this.GetComponent<PlayerInput>();
         move= this.playerInput.actions.FindAction("Move");
         sprint = this.playerInput.actions.FindAction("Sprint");
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        //rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        sprintSpeed = initialMovespeed * sprintMulitiplyer;
     }
 
     // Update is called once per frame
     void Update()
     {
+        movespeed = initialMovespeed;
+
         if (isFrozen)  
             return;
 
         if (sprint.IsPressed())
         {
-            MovePlayer(sprintSpeed);
+            movespeed = sprintSpeed;
         }
-        MovePlayer(initialMovespeed);
+
+        MovePlayer(movespeed);
     
     }
 
     void MovePlayer(float speed)
     {
         Vector2 input = move.ReadValue<Vector2>();
+        
         Vector3 moveDir = (transform.forward * input.y + transform.right * input.x).normalized;
         rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
     }

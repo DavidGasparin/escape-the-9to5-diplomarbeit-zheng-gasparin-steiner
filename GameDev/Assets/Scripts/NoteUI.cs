@@ -17,6 +17,7 @@ public class NoteUI : MonoBehaviour
     private void Awake()
     {
 
+       
         if (player == null)
             player = FindFirstObjectByType<Player>();
 
@@ -25,7 +26,7 @@ public class NoteUI : MonoBehaviour
 
         Debug.Log("PlayerInput: " + playerInput);
 
-
+        FreezeManager.Init(player, camera);
         Instance = this;
         close = playerInput.actions.FindAction("Close");
         notePanel.SetActive(false);
@@ -36,22 +37,16 @@ public class NoteUI : MonoBehaviour
     {
         notePanel.SetActive(true);
         noteText.text = text;
-        player.freezePLayer();
-        camera.freezeCamera();
-
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+      
+        FreezeManager.Freeze();
+        FreezeManager.ShowCursor();
     }
 
     public void HideNote()
     {
         notePanel.SetActive(false);
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        player.unfreezePlayer(); 
-        camera.unfreezeCamera();
-
+        FreezeManager.HideCursor();
+        FreezeManager.Unfreeze();
     }
 
     void Update()

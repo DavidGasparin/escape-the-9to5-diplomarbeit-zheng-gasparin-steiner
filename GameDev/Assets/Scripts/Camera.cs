@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerLook : MonoBehaviour
 {
-    public float sensitivity = 100f;
+    public float sensitivity = 500f;
     public Transform playerBody;
 
     float xRotation = 0f;
@@ -11,11 +11,14 @@ public class PlayerLook : MonoBehaviour
     private Vector2 lookInput;
     public bool cameraFrozen = false;
 
+    private InputAction lookAction;
+
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        lookAction = GetComponent<PlayerInput>().actions.FindAction("Look");
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -25,7 +28,7 @@ public class PlayerLook : MonoBehaviour
 
     void Update()
     {
-
+       
         if (cameraFrozen) 
             return;
         
@@ -44,11 +47,13 @@ public class PlayerLook : MonoBehaviour
     {
         cameraFrozen = true;
         lookInput = Vector2.zero;
+        if (lookAction != null) lookAction.Disable();
     }
 
     public void unfreezeCamera()
     {
         cameraFrozen = false;
         lookInput = Vector2.zero;
+        if (lookAction != null) lookAction.Enable();
     }
 }

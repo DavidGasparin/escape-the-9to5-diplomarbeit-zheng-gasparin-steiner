@@ -2,6 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System;
+using UnityEngine.AI;
+using System.Security.Cryptography.X509Certificates;
 
 public class Save : MonoBehaviour
 {
@@ -14,6 +17,8 @@ public class Save : MonoBehaviour
     private PlayerLook camera;
 
     public static Save Instance;
+
+    private bool open = false;
 
 
 
@@ -32,6 +37,7 @@ public class Save : MonoBehaviour
         if (camera == null)
             camera = FindFirstObjectByType<PlayerLook>();
         
+        FreezeManager.Init(player, camera);
         Instance = this;
         Debug.Log("PlayerInput: " + playerInput);
         close = playerInput.actions.FindAction("Close");
@@ -41,10 +47,9 @@ public class Save : MonoBehaviour
     {
         uiPanel.SetActive(true);
         feedbackText.text = "";
-        player.freezePLayer();
-        camera.freezeCamera();
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        FreezeManager.Freeze();
+        FreezeManager.ShowCursor();
+        Accept();
     }
 
     public void Plus(int stelle)
@@ -63,21 +68,22 @@ public class Save : MonoBehaviour
 
     public void Accept()
     {
-        if ($"{firstNumber}{secoundNumber}" == richtigerPin)
+        Debug.Log("Accept auf Save ausgeführt");
+        if ($"{firstNumber}{secoundNumber}" == richtigerPin || open)
         {
+            screenPin.text = "";  
             feedbackText.text = "Geöffnet!";
             feedbackText.color = Color.green;
-        }
-        else
-        {
-            feedbackText.text = "Falsch!";
-            feedbackText.color = Color.red;
+            open = true;
         }
         UpdateSave();
     } 
     void UpdateSave()
     {
+        if(!feedbackText.text.Equals("Geöffnet!")){
         screenPin.text = $"{firstNumber}{secoundNumber}";
+        }
+        Debug.Log("current code: " + $"{firstNumber}{secoundNumber}");
     }
 
     void Update()
@@ -91,10 +97,8 @@ public class Save : MonoBehaviour
     public void HideSave()
     {
         uiPanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        player.unfreezePlayer(); 
-        camera.unfreezeCamera();
+        FreezeManager.Unfreeze();
+        FreezeManager.HideCursor();
     }
        public bool IsNoteActive()
     {
