@@ -16,6 +16,8 @@ public class Save : MonoBehaviour
     private Player player;
     private PlayerLook camera;
 
+    [SerializeField]  private InteractWithDoor interactWithDoor;
+
     public static Save Instance;
 
     private bool open = false;
@@ -75,6 +77,8 @@ public class Save : MonoBehaviour
             feedbackText.text = "Geöffnet!";
             feedbackText.color = Color.green;
             open = true;
+            interactWithDoor.setCanInteract(true);
+
         }
         UpdateSave();
     } 

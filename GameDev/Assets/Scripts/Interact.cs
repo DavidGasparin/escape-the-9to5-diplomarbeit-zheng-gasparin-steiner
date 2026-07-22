@@ -23,10 +23,10 @@ public class Interact : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InteractText.gameObject.SetActive(false); 
-        if (NoteUI.Instance != null && InteractableActive())
+        InteractText.gameObject.SetActive(false);
+        if (InteractableActive())
         {
-            return; 
+            return;
         }
 
         Ray ray = new Ray(InteractorSource.position, InteractorSource.forward);
@@ -51,7 +51,7 @@ public class Interact : MonoBehaviour
         }
     }
 
-  private bool InteractableActive()
+    private bool InteractableActive()
     {
         if (NoteUI.Instance != null && NoteUI.Instance.IsNoteActive())
             return true;
