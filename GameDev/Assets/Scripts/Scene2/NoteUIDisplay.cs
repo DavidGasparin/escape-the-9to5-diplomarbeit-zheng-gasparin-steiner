@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class NoteUI : MonoBehaviour
+public class NoteUIDisplay : MonoBehaviour
 {
-    public static NoteUI Instance;
+    public static NoteUIDisplay Instance;
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private GameObject notePanel;
     [SerializeField] private TextMeshProUGUI noteText;
