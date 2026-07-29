@@ -4,12 +4,14 @@ using UnityEngine.InputSystem;
 public class Player2D : MonoBehaviour
 {
 
-    [SerializeField] float speed = 3f; 
+    [SerializeField] float speed = 3f;
     [SerializeField] float sprintSpeed = 5f;
     [SerializeField] float jumpForce = 5f;
-    
 
-    private Rigidbody2D rb; 
+
+
+
+    private Rigidbody2D rb;
     PlayerInput playerInput;
 
     InputAction move;
@@ -24,11 +26,12 @@ public class Player2D : MonoBehaviour
     [SerializeField] Collider2D playerCollider;
     [SerializeField] PhysicsMaterial2D noFriction;
     [SerializeField] PhysicsMaterial2D wallSlideMaterial;
+    [SerializeField] private Animator animator;
 
 
     void Start()
     {
-        rb  = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         playerInput = this.GetComponent<PlayerInput>();
         move = this.playerInput.actions.FindAction("Move");
         sprint = this.playerInput.actions.FindAction("Sprint");
@@ -48,7 +51,7 @@ public class Player2D : MonoBehaviour
         {
             playerCollider.sharedMaterial = noFriction;
         }
-           else
+        else
         {
             playerCollider.sharedMaterial = wallSlideMaterial;
         }
@@ -56,16 +59,16 @@ public class Player2D : MonoBehaviour
         {
             Reset();
         }
-        
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
-{
-    if (collision.gameObject.tag == "Damage")
     {
-        Reset();
+        if (collision.gameObject.tag == "Damage")
+        {
+            Reset();
+        }
     }
-}
 
     void Reset()
     {
@@ -74,25 +77,37 @@ public class Player2D : MonoBehaviour
 
     void FixedUpdate()
     {
-          if (sprint.IsPressed())
+        if (sprint.IsPressed())
         {
             MovePlayer(sprintSpeed);
             return;
         }
-        MovePlayer(speed);  
+        MovePlayer(speed);
     }
 
 
     bool IsGrounded()
     {
-        return rb.linearVelocityY==0;
+        return rb.linearVelocityY == 0;
     }
 
 
-     void MovePlayer(float speed)
+    void MovePlayer(float speed)
     {
         float horizontal = move.ReadValue<Vector2>().x;
 
         rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+
+        if (rb.linearVelocity.x != 0)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
+        {
+
+        }
     }
 }
