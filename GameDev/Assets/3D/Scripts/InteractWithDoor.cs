@@ -11,8 +11,7 @@ public class InteractWithDoor : MonoBehaviour, Interactable
 
     private void Awake()
     { 
-        Instance = this;
-        
+        Instance = this; 
     }
 
     public bool CanInteract()

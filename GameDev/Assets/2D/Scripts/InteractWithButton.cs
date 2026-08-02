@@ -4,16 +4,12 @@ using UnityEngine.SceneManagement;
 public class InteractWithButton : MonoBehaviour, Interactable
 {
 
-
-
     public static InteractWithButton Instance;
-    GameObject level;
     private bool canInteract = true;
 
     private void Awake()
     {
         Instance = this;
-
     }
 
     public bool CanInteract()
@@ -23,14 +19,23 @@ public class InteractWithButton : MonoBehaviour, Interactable
 
     public void Interact()
     {
-        level.gameObject.SetActive(false);
+        {
+            int layer = LayerMask.NameToLayer("GroundNormal");
+
+            foreach (GameObject obj in FindObjectsOfType<GameObject>())
+            {
+                if (obj.layer == layer)
+                {
+                    obj.SetActive(false);
+                }
+            }
+        }
 
     }
 
     public void setCanInteract(bool value)
     {
         canInteract = value;
-        Debug.Log("Door opened");
     }
 
 }

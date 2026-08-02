@@ -1,24 +1,27 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class Display : MonoBehaviour
-
+using UnityEngine.InputSystem;
 
 
-{
+public class Display : MonoBehaviour{
 
-  
+    InputAction select;
+    PlayerInput playerInput;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        playerInput = this.GetComponent<PlayerInput>();
+        select = this.playerInput.actions.FindAction("Select");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (select.IsPressed())
+        {
+            ButtonPressed();
+        }
     }
 
 

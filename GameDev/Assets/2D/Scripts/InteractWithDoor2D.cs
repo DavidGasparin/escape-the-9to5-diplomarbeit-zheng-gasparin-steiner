@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InteractWithDoor2D : MonoBehaviour
+public class InteractWithDoor2D : MonoBehaviour, Interactable
 {
     public static InteractWithDoor2D Instance;
 
@@ -27,7 +27,7 @@ public class InteractWithDoor2D : MonoBehaviour
     public void setCanInteract(bool value)
     {
         canInteract = value;
-        Debug.Log("Door opened");
+      
     }
 
 }

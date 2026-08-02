@@ -136,6 +136,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""21428b26-78b4-4ceb-8118-004fa33d114b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -325,6 +334,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Close"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""067e26db-41f0-4a22-ae00-d89348fbbf3b"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""715a97eb-e2d9-4d79-a39f-08a36fa6873a"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -338,6 +369,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Inputactions_Look = m_Inputactions.FindAction("Look", throwIfNotFound: true);
         m_Inputactions_Interact = m_Inputactions.FindAction("Interact", throwIfNotFound: true);
         m_Inputactions_Close = m_Inputactions.FindAction("Close", throwIfNotFound: true);
+        m_Inputactions_Select = m_Inputactions.FindAction("Select", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -423,6 +455,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Inputactions_Look;
     private readonly InputAction m_Inputactions_Interact;
     private readonly InputAction m_Inputactions_Close;
+    private readonly InputAction m_Inputactions_Select;
     /// <summary>
     /// Provides access to input actions defined in input action map "Input actions".
     /// </summary>
@@ -454,6 +487,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Inputactions/Close".
         /// </summary>
         public InputAction @Close => m_Wrapper.m_Inputactions_Close;
+        /// <summary>
+        /// Provides access to the underlying input action "Inputactions/Select".
+        /// </summary>
+        public InputAction @Select => m_Wrapper.m_Inputactions_Select;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -495,6 +532,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Close.started += instance.OnClose;
             @Close.performed += instance.OnClose;
             @Close.canceled += instance.OnClose;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
         }
 
         /// <summary>
@@ -521,6 +561,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Close.started -= instance.OnClose;
             @Close.performed -= instance.OnClose;
             @Close.canceled -= instance.OnClose;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
         }
 
         /// <summary>
@@ -596,5 +639,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnClose(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Select" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelect(InputAction.CallbackContext context);
     }
 }

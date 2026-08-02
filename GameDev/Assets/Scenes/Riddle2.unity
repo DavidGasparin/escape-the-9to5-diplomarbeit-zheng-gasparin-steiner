@@ -878,6 +878,10 @@ PrefabInstance:
       propertyPath: notePanel
       value: 
       objectReference: {fileID: 1449984598}
+    - target: {fileID: 8371398907138761289, guid: 4c2afe531d94c494c9465738a9e76701, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 775214899}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
