@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a222209c95eeb94c920027fcb062e44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Display
+  notePanel: {fileID: 1449984598}
 --- !u!114 &775214899 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4006276569445822279, guid: edbb7963702492045afa1b5f145f1632, type: 3}
@@ -205,7 +206,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -600}
+  m_AnchoredPosition: {x: 0, y: -350}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &934155276
@@ -1020,13 +1021,29 @@ PrefabInstance:
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 775214899}
+    - target: {fileID: 2143276195497686263, guid: 3f3949bbc66f9c240b9b74f93bc40753, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143276195497686263, guid: 3f3949bbc66f9c240b9b74f93bc40753, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 54bd274056efb46479875cd6ba786678, type: 3}
     - target: {fileID: 2718105313516481127, guid: 3f3949bbc66f9c240b9b74f93bc40753, type: 3}
       propertyPath: m_Name
       value: NotesCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3031956494346670319, guid: 3f3949bbc66f9c240b9b74f93bc40753, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3888487216963662784, guid: 3f3949bbc66f9c240b9b74f93bc40753, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888487216963662784, guid: 3f3949bbc66f9c240b9b74f93bc40753, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 4539946303794417691, guid: 3f3949bbc66f9c240b9b74f93bc40753, type: 3}
       propertyPath: m_IsActive
@@ -1149,7 +1166,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5088968539625494270, guid: 3f3949bbc66f9c240b9b74f93bc40753, type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 934155275}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2718105313516481127, guid: 3f3949bbc66f9c240b9b74f93bc40753, type: 3}

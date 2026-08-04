@@ -1,61 +1,73 @@
-﻿using System.Security.Cryptography;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InteractionWithBookshelf : MonoBehaviour, Interactable
 {
-
     public static bool hasReadNotes = false;
-    [SerializeField] private NoteUI noteUI;
-    private float zielX;
+
+    [SerializeField] private float moveDistance = 2.5f;
+    [SerializeField] private float moveSpeed = 3f;
+
     private static int counter = 0;
-    bool bewegtSich = false;
+
+    private Vector3 targetPosition;
+    private bool bewegtSich = false;
+
+    private void Start()
+    {
+        // Nur den X-Wert im Inspector um 2,5 erhöhen.
+        targetPosition = transform.localPosition;
+        targetPosition.x += moveDistance;
+    }
 
     public bool CanInteract()
     {
-        if(counter >= 4)
+        if (counter >= 4)
             hasReadNotes = true;
 
         return hasReadNotes;
     }
 
-        void Start()
-    {   
-        zielX = transform.position.x + 5; 
-    }
 
+    public void setCanInteract(bool value)
+    {
+        hasReadNotes = value;
+    }
     public static void incrementCounter(int value)
     {
-        counter +=value;
+        counter += value;
     }
 
     public void Interact()
     {
-        if (CanInteract())
-        {
-            Debug.Log(" Interact wurde aufgerufen auf: " + gameObject.name);
-            if (transform.position.x < zielX)
-                bewegtSich = true;
-        }
+        if (!CanInteract() || bewegtSich)
+            return;
+
+        Debug.Log("Bücherregal bewegt sich nach rechts.");
+        bewegtSich = true;
     }
 
-    public void setCanInteract(bool value)
+    public void SetCanInteract(bool value)
     {
-        hasReadNotes = value;   
+        hasReadNotes = value;
     }
 
-     void Update()
+    private void Update()
     {
         if (!bewegtSich)
             return;
-            
-        transform.Translate(Vector3.right * 3 * Time.deltaTime);
-        if (transform.position.x >= zielX)
+
+        transform.localPosition = Vector3.MoveTowards(
+            transform.localPosition,
+            targetPosition,
+            moveSpeed * Time.deltaTime
+        );
+
+        if (Vector3.Distance(transform.localPosition, targetPosition) < 0.001f)
         {
-            transform.position = new Vector3(zielX, transform.position.y, transform.position.z);
-            enabled = false; 
+            transform.localPosition = targetPosition;
             bewegtSich = false;
-            hasReadNotes = false;
+
+            Debug.Log("Bücherregal ist am Ziel.");
         }
     }
 }

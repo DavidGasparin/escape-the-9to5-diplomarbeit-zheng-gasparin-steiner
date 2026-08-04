@@ -25,10 +25,20 @@ public class Save : MonoBehaviour
 
 
     InputAction close;
+    InputAction add;
+    InputAction subtract;
+    InputAction right;
+
+    InputAction left;
+    InputAction select;
+
+
 
 
     private int firstNumber = 0;
     private int secoundNumber = 0;
+
+    private int point = 0; 
 
 
     private void Awake()
@@ -43,6 +53,12 @@ public class Save : MonoBehaviour
         Instance = this;
         Debug.Log("PlayerInput: " + playerInput);
         close = playerInput.actions.FindAction("Close");
+        add = playerInput.actions.FindAction("AddToCode");
+        subtract = playerInput.actions.FindAction("SubtractFromCode");
+        left = playerInput.actions.FindAction("Left");
+        right = playerInput.actions.FindAction("Right");
+        select = playerInput.actions.FindAction("Select");
+
     }
 
     public void OpenSave()
@@ -92,6 +108,26 @@ public class Save : MonoBehaviour
 
     void Update()
     {
+        if (left.WasPressedThisFrame()&&point==1)
+        {
+            point = 0;
+        }
+        if (right.WasPressedThisFrame() && point == 0)
+        {
+            point = 1;
+        }
+        if (add.WasPressedThisFrame())
+        {
+            Plus(point);
+        }
+        if (subtract.WasPressedThisFrame())
+        {
+            Minus(point);
+        }
+        if (select.WasPressedThisFrame())
+        {
+            Accept();
+        }
         if (uiPanel.activeSelf && close.IsPressed())
         {
             HideSave();

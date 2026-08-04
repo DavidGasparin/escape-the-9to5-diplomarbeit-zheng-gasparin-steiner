@@ -145,6 +145,42 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AddToCode"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d678d13-9964-48d9-8fe9-e28f21b53075"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SubtractFromCode"",
+                    ""type"": ""Button"",
+                    ""id"": ""23cf8eba-84ef-4231-8c5d-7e1d63d5cc68"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""c66781df-a512-48c6-a350-c9a55251797d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""242f5b15-90f3-4811-a6c5-e5affbe9cad7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -356,6 +392,50 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cd4df0e-cdc4-4e88-92a5-fe536dab092f"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AddToCode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10210e79-b079-4bcb-8bcc-77c5cc3b611e"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SubtractFromCode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f243064-4ab9-460c-98fb-4779a6b1bbf3"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8357294-b549-4fa3-a3db-f99135b396cc"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -370,6 +450,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Inputactions_Interact = m_Inputactions.FindAction("Interact", throwIfNotFound: true);
         m_Inputactions_Close = m_Inputactions.FindAction("Close", throwIfNotFound: true);
         m_Inputactions_Select = m_Inputactions.FindAction("Select", throwIfNotFound: true);
+        m_Inputactions_AddToCode = m_Inputactions.FindAction("AddToCode", throwIfNotFound: true);
+        m_Inputactions_SubtractFromCode = m_Inputactions.FindAction("SubtractFromCode", throwIfNotFound: true);
+        m_Inputactions_Left = m_Inputactions.FindAction("Left", throwIfNotFound: true);
+        m_Inputactions_Right = m_Inputactions.FindAction("Right", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -456,6 +540,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Inputactions_Interact;
     private readonly InputAction m_Inputactions_Close;
     private readonly InputAction m_Inputactions_Select;
+    private readonly InputAction m_Inputactions_AddToCode;
+    private readonly InputAction m_Inputactions_SubtractFromCode;
+    private readonly InputAction m_Inputactions_Left;
+    private readonly InputAction m_Inputactions_Right;
     /// <summary>
     /// Provides access to input actions defined in input action map "Input actions".
     /// </summary>
@@ -491,6 +579,22 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Inputactions/Select".
         /// </summary>
         public InputAction @Select => m_Wrapper.m_Inputactions_Select;
+        /// <summary>
+        /// Provides access to the underlying input action "Inputactions/AddToCode".
+        /// </summary>
+        public InputAction @AddToCode => m_Wrapper.m_Inputactions_AddToCode;
+        /// <summary>
+        /// Provides access to the underlying input action "Inputactions/SubtractFromCode".
+        /// </summary>
+        public InputAction @SubtractFromCode => m_Wrapper.m_Inputactions_SubtractFromCode;
+        /// <summary>
+        /// Provides access to the underlying input action "Inputactions/Left".
+        /// </summary>
+        public InputAction @Left => m_Wrapper.m_Inputactions_Left;
+        /// <summary>
+        /// Provides access to the underlying input action "Inputactions/Right".
+        /// </summary>
+        public InputAction @Right => m_Wrapper.m_Inputactions_Right;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -535,6 +639,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
+            @AddToCode.started += instance.OnAddToCode;
+            @AddToCode.performed += instance.OnAddToCode;
+            @AddToCode.canceled += instance.OnAddToCode;
+            @SubtractFromCode.started += instance.OnSubtractFromCode;
+            @SubtractFromCode.performed += instance.OnSubtractFromCode;
+            @SubtractFromCode.canceled += instance.OnSubtractFromCode;
+            @Left.started += instance.OnLeft;
+            @Left.performed += instance.OnLeft;
+            @Left.canceled += instance.OnLeft;
+            @Right.started += instance.OnRight;
+            @Right.performed += instance.OnRight;
+            @Right.canceled += instance.OnRight;
         }
 
         /// <summary>
@@ -564,6 +680,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
+            @AddToCode.started -= instance.OnAddToCode;
+            @AddToCode.performed -= instance.OnAddToCode;
+            @AddToCode.canceled -= instance.OnAddToCode;
+            @SubtractFromCode.started -= instance.OnSubtractFromCode;
+            @SubtractFromCode.performed -= instance.OnSubtractFromCode;
+            @SubtractFromCode.canceled -= instance.OnSubtractFromCode;
+            @Left.started -= instance.OnLeft;
+            @Left.performed -= instance.OnLeft;
+            @Left.canceled -= instance.OnLeft;
+            @Right.started -= instance.OnRight;
+            @Right.performed -= instance.OnRight;
+            @Right.canceled -= instance.OnRight;
         }
 
         /// <summary>
@@ -646,5 +774,33 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSelect(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AddToCode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAddToCode(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SubtractFromCode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSubtractFromCode(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Left" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Right" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRight(InputAction.CallbackContext context);
     }
 }

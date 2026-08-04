@@ -8,6 +8,8 @@ public class Display : MonoBehaviour{
     InputAction select;
     PlayerInput playerInput;
 
+    [SerializeField] private GameObject notePanel;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +20,7 @@ public class Display : MonoBehaviour{
     // Update is called once per frame
     void Update()
     {
-        if (select.IsPressed())
+        if (select.IsPressed() && notePanel.activeSelf )
         {
             ButtonPressed();
         }
