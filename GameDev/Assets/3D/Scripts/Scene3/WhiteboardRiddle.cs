@@ -1,37 +1,88 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WhiteboardRiddle : MonoBehaviour
 {
-  
+
+    InputAction select;
+    [SerializeField] private GameObject notePanel;
+    [SerializeField] private PlayerInput playerInput;
+
+    //Lösung des Satzes:Meist ist es besser die ganze Warheit zu wissen egal, ob du dir von vielen Details die Warheit denken kannst!
     // Letters and Enchryped Letters(Numners)
-    private char[] chars= {'H', '1', '2', 'A', '4', '5', 'H', '1', '2', 'A', '4', '5'};
+    char[] chars =
+ {
+    'M', '6', '7', '8', '5', ' ',
+    '7', '8', '5', ' ',
+    '6', '8', ' ',
+    'V', '6', '8', '8', '6', '1', ' ',
+    '4', '7', '6', ' ',
+    '3', '9', '5', 'z', '6', ' ',
+    'W', '9', '1', '3', '6', '7', '5', ' ',
+    'z', '4', ' ',
+    'w', '7', '8', '8', '6', '5', ' ',
+    '6', '3', '9', 'l', ',', ' ',
+    '0', 'V', ' ',
+    'd', '4', ' ',
+    'd', '7', '1', ' ',
+    'v', '0', '5', ' ',
+    'v', '7', '6', 'l', '6', '5', ' ',
+    'D', '6', 't', '9', '7', 'l', '8', ' ',
+    'd', '7', '6', ' ',
+    'W', '9', '1', '3', '6', '7', '5', ' ',
+    'd', '6', '5', 'k', '6', '5', ' ',
+    'k', '9', '5', '5', '8', 't', '!'
+};
     private char currentSelectedChar;
     private char currentAvailableChar;
 
     private HashSet<char> available;
 
 
+   
+
+
     // Only Letters that don't appear in chars
-    private char[] Letters = {'P', 'L', 'O' };
+    private char[] letters = {
+    'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J',
+    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'X', 'Y', 'Z'
+};
     private HashSet<char> selection;
 
     [SerializeField] private TextMeshProUGUI availableText;
     [SerializeField] private TextMeshProUGUI selectedText;
     [SerializeField] private TextMeshProUGUI riddleText;
 
-    
-    
+    private void writeIntoText()
+    {
+        String text = getText();
+        InteractWithNotes note = this.GetComponent<InteractWithNotes>();
+        if (note != null)
+        {
+            note.setNoteText(text);
+        }
+    }
+
     void Start()
     {
-        selection = new HashSet<char>(Letters);
+
+       
+
+        selection = new HashSet<char>(letters);
         
         available = new HashSet<char>(chars);
         currentSelectedChar = selection.First();
         currentAvailableChar = available.First();
+
+        availableText.text = currentAvailableChar.ToString();
+        selectedText.text = currentSelectedChar.ToString();
+        writeIntoText();
+        playerInput = this.GetComponent<PlayerInput>();
+        select = playerInput.actions.FindAction("Select");
     }
 
   private char NextChar(HashSet<char> set, ref char currentChar)
@@ -124,32 +175,39 @@ public class WhiteboardRiddle : MonoBehaviour
     {
         availableText.text = currentAvailableChar.ToString();
         selectedText.text = currentSelectedChar.ToString();
-        riddleText.text = getText();
+        writeIntoText();
     }
 
 
     public void NextAvailable()
     {
-        NextChar(available, ref currentAvailableChar);
+        availableText.text = NextChar(available, ref currentAvailableChar).ToString();
+        
     }
 
     public void PreviousAvailable()
     {
-        PreviousChar(available, ref currentAvailableChar);
+        availableText.text = PreviousChar(available, ref currentAvailableChar).ToString();
+
     }
 
     public void NextSelected()
     {
-        NextChar(selection, ref currentSelectedChar);
+        selectedText.text = NextChar(selection, ref currentSelectedChar).ToString();
+       
     }
 
     public void PreviousSelected()
     {
-        PreviousChar(selection, ref currentSelectedChar);
+        selectedText.text = PreviousChar(selection, ref currentSelectedChar).ToString();
     }
 
     void Update()
     {
-        
+        if (select.IsPressed() && notePanel.activeSelf)
+        {
+            ReplaceCurrent();
+            UpdateUI();
+        }
     }
 }

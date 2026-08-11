@@ -37,9 +37,9 @@ public class NoteUI : MonoBehaviour
 
     public void ShowNote(string text)
     {
-        notePanel.SetActive(true);
         noteText.text = text;
-      
+        notePanel.SetActive(true);
+    
         FreezeManager.Freeze();
         FreezeManager.ShowCursor();       
     }

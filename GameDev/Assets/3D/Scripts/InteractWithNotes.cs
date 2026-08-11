@@ -26,6 +26,11 @@ public class InteractWithNotes : MonoBehaviour, Interactable
     {
         canInteract = value;
     }
+
+    public void setNoteText(string text)
+    {
+        noteText = text;
+    }
 }
 
 
