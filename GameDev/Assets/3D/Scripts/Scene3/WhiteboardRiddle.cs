@@ -1,213 +1,222 @@
-using System;
-using System.Collections.Generic;
+﻿using JetBrains.Annotations;
 using System.Linq;
 using TMPro;
+using Unity.Profiling.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WhiteboardRiddle : MonoBehaviour
+public class WhiteBoard : MonoBehaviour
 {
-
-    InputAction select;
+    private InputAction select;
     [SerializeField] private GameObject notePanel;
     [SerializeField] private PlayerInput playerInput;
 
-    //L�sung des Satzes:Meist ist es besser die ganze Warheit zu wissen egal, ob du dir von vielen Details die Warheit denken kannst!
-    // Letters and Enchryped Letters(Numners)
-    char[] chars =
- {
-    'M', '6', '7', '8', '5', ' ',
-    '7', '8', '5', ' ',
-    '6', '8', ' ',
-    'V', '6', '8', '8', '6', '1', ' ',
-    '4', '7', '6', ' ',
-    '3', '9', '5', 'z', '6', ' ',
-    'W', '9', '1', '3', '6', '7', '5', ' ',
-    'z', '4', ' ',
-    'w', '7', '8', '8', '6', '5', ' ',
-    '6', '3', '9', 'l', ',', ' ',
-    '0', 'V', ' ',
-    'd', '4', ' ',
-    'd', '7', '1', ' ',
-    'v', '0', '5', ' ',
-    'v', '7', '6', 'l', '6', '5', ' ',
-    'D', '6', 't', '9', '7', 'l', '8', ' ',
-    'd', '7', '6', ' ',
-    'W', '9', '1', '3', '6', '7', '5', ' ',
-    'd', '6', '5', 'k', '6', '5', ' ',
-    'k', '9', '5', '5', '8', 't', '!'
-};
-    private char currentSelectedChar;
-    private char currentAvailableChar;
-
-    private HashSet<char> available;
-
-
-   
-
-
-    // Only Letters that don't appear in chars
-    private char[] letters = {
-    'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J',
-    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'X', 'Y', 'Z'
-};
-    private HashSet<char> selection;
-
-    [SerializeField] private TextMeshProUGUI availableText;
-    [SerializeField] private TextMeshProUGUI selectedText;
+    [SerializeField] private TextMeshProUGUI leftText;
+    [SerializeField] private TextMeshProUGUI rightText;
     [SerializeField] private TextMeshProUGUI riddleText;
+    bool leftPlusWasLast = false;
+    bool leftMinusWasLast = false;
+    bool rightPlusWasLast = false;
+    bool rightMinusWasLast = false;
+    private Player player;
 
-    private void writeIntoText()
+    private char[] encryptedText =
     {
-        String text = getText();
-        InteractWithNotes note = this.GetComponent<InteractWithNotes>();
-        if (note != null)
-        {
-            note.setNoteText(text);
-        }
-    }
+        'M','6','7','8','T',' ',
+        '7','8','T',' ',
+        '6','8',' ',
+        'B','6','8','8','6','1',' ',
+        'D','7','6',' ',
+        'G','9','5','Z','6',' ',
+        'W','9','3','1','3','6','7','T',' ',
+        'Z','4',' ',
+        'W','7','8','8','6','5',' ',
+        '6','G','9','L',',',' ',
+        '0','B',' ',
+        'D','4',' ',
+        'D','7','1',' ',
+        '2','0','5',' ',
+        '2','7','6','L','6','5',' ',
+        'D','6','T','9','7','L','8',' ',
+        'D','7','6',' ',
+        'W','9','3','1','3','6','7','T',' ',
+        'D','6','5','K','6','5',' ',
+        'K','9','5','5','8','T','!'
 
-    void Start()
+    };
+
+    private char[] left = {
+            '0','1','2','3','4','5','6','7','8','9'
+        };
+
+    private char[] right =
     {
+        'A', 'E', 'I', 'O', 'U', 'N', 'S', 'R', 'V', 'H'
+    };
 
-       
+    private int selectedLeft; // index of 7
+    private int selectedRight; // index of C
 
-        selection = new HashSet<char>(letters);
-        
-        available = new HashSet<char>(chars);
-        currentSelectedChar = selection.First();
-        currentAvailableChar = available.First();
+    private void Awake()
+    {
+        if (player == null)
+            player = FindFirstObjectByType<Player>();
 
-        availableText.text = currentAvailableChar.ToString();
-        selectedText.text = currentSelectedChar.ToString();
-        writeIntoText();
-        playerInput = this.GetComponent<PlayerInput>();
         select = playerInput.actions.FindAction("Select");
     }
 
-  private char NextChar(HashSet<char> set, ref char currentChar)
+
+    void Start()
     {
-        List<char> list = set.ToList();
-
-        int index = list.IndexOf(currentChar);
-
-        index++;
-
-        if (index >= list.Count)
+        if (playerInput == null)
         {
-            index = 0;
+            playerInput = GetComponent<PlayerInput>();
         }
 
-        currentChar = list[index];
+        if (playerInput != null)
+        {
+            select = playerInput.actions.FindAction("Select");
+        }
 
-        return currentChar;
+        selectedLeft = 0;
+        selectedRight = 0;
+        updateUI();
     }
 
-    private char PreviousChar(HashSet<char> set, ref char currentChar)
+    private void swapLeftRight()
     {
-        List<char> list = set.ToList();
+        char leftBuffer = left[selectedLeft];
 
-        int index = list.IndexOf(currentChar);
+        left[selectedLeft] = right[selectedRight];
+        right[selectedRight] = leftBuffer;
 
-        index--;
-
-        if (index < 0)
-        {
-            index = list.Count - 1;
-        }
-
-        currentChar = list[index];
-
-        return currentChar;
+        updateUI();
     }
 
-    private void ReplaceChar(char oldChar, char newChar)
+    private void swap(int oldChar, int newChar)
     {
-        if (!available.Contains(oldChar))
+        for (int i = 0; i < encryptedText.Length; i++)
         {
-            Debug.LogWarning(oldChar + " ist nicht im aktuellen Text.");
-            return;
-        }
-
-        if (!selection.Contains(newChar))
-        {
-            Debug.LogWarning(newChar + " ist nicht in der Selection.");
-            return;
-        }
-
-        for (int i = 0; i < chars.Length; i++)
-        {
-            if (chars[i] == oldChar)
+            if (encryptedText[i] == left[oldChar])
             {
-                chars[i] = newChar;
+                encryptedText[i] = right[newChar];
             }
         }
-
-        selection.Remove(newChar);
-        selection.Add(oldChar);
-
-        available = new HashSet<char>(chars);
+        updateUI();
     }
 
-    String getText()
+    private int getNextChar(char[] arr, int current)
     {
-        String text = "";
-        foreach(char c in chars)
+        if (current == arr.Length - 1)
         {
-            text += c;
+            return 0;
         }
-        return text;
+        return current + 1;
     }
 
-
-    public void ReplaceCurrent()
+    private int getPreviousChar(char[] arr, int current)
     {
-        char oldChar = currentAvailableChar;
-        char newChar = currentSelectedChar;
-
-        ReplaceChar(oldChar, newChar);
-
-        currentAvailableChar = newChar;
-        currentSelectedChar = oldChar;
-    }
-    // Accept Button
-    public void UpdateUI()
-    {
-        availableText.text = currentAvailableChar.ToString();
-        selectedText.text = currentSelectedChar.ToString();
-        writeIntoText();
+        if (current == 0)
+        {
+            return arr.Length - 1;
+        }
+        return current - 1;
     }
 
-
-    public void NextAvailable()
+    private void updateUI()
     {
-        availableText.text = NextChar(available, ref currentAvailableChar).ToString();
+        riddleText.text = new string(encryptedText);
+        leftText.text = left[selectedLeft].ToString();
+        rightText.text = right[selectedRight].ToString();
+    }
+    public void swapChar()
+    {
+        Debug.Log($"🔄 swapChar: selectedLeft='{selectedLeft}', selectedRight='{selectedRight}'");
+
+        if (leftPlusWasLast)
+        {
+            // gehe einen Schritt zurück, aber mit Wrap-Around
+            selectedLeft = (selectedLeft - 1 + left.Length) % left.Length;
+            swap(selectedLeft, selectedRight);
+            swapLeftRight();
+        }
+        else if (leftMinusWasLast)
+        {
+            selectedLeft = (selectedLeft + 1) % left.Length;
+            swap(selectedLeft, selectedRight);
+            swapLeftRight();
+        }
+        else if (rightPlusWasLast)
+        {
+            selectedRight = (selectedRight - 1 + right.Length) % right.Length;
+            swap(selectedLeft, selectedRight);
+            swapLeftRight();
+        }
+        else if (rightMinusWasLast)
+        {
+            selectedRight = (selectedRight + 1) % right.Length;
+            swap(selectedLeft, selectedRight);
+            swapLeftRight();
+        }
+    }
+
+    public void nextLeft()
+    {
+        leftPlusWasLast = true;
+        leftMinusWasLast = false;
+        rightPlusWasLast = false;
+        rightMinusWasLast = false;
+        selectedLeft = getNextChar(left, selectedLeft);
+        updateUI();
+    }
+
+   
+
+    public void previousLeft()
+    {
+        leftPlusWasLast = false;
+        leftMinusWasLast = true;
+        rightPlusWasLast = false;
+        rightMinusWasLast = false;
+        selectedLeft = getPreviousChar(left, selectedLeft);
+        updateUI();
         
+
     }
 
-    public void PreviousAvailable()
+    public void nextRight()
     {
-        availableText.text = PreviousChar(available, ref currentAvailableChar).ToString();
-
+        leftPlusWasLast = false;
+        leftMinusWasLast = false;
+        rightPlusWasLast = true;
+        rightMinusWasLast = false;
+        selectedRight = getNextChar(right, selectedRight);
+        updateUI();
     }
 
-    public void NextSelected()
+    public void previousRight()
     {
-        selectedText.text = NextChar(selection, ref currentSelectedChar).ToString();
-       
+        leftPlusWasLast = false;
+        leftMinusWasLast = false;
+        rightPlusWasLast = false;
+        rightMinusWasLast = true;
+        selectedRight = getPreviousChar(right, selectedRight);
+        updateUI();
     }
 
-    public void PreviousSelected()
-    {
-        selectedText.text = PreviousChar(selection, ref currentSelectedChar).ToString();
-    }
+    
 
+    // Update is called once per frame
     void Update()
     {
-        if (select.IsPressed() && notePanel.activeSelf)
+        if (select == null || notePanel == null)
+            return;
+
+        if (select.WasPressedThisFrame() &&
+            notePanel.activeSelf)
         {
-            ReplaceCurrent();
-            UpdateUI();
+            swapChar();
         }
+
     }
 }

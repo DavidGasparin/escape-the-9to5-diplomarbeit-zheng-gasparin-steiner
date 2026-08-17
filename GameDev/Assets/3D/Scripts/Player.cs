@@ -86,4 +86,9 @@ public class Player : MonoBehaviour
 
         isFrozen = false;
     }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 }

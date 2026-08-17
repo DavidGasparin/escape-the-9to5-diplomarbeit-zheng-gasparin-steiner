@@ -12,13 +12,23 @@ public class PlayerLook : MonoBehaviour
     public bool cameraFrozen = false;
 
     private InputAction lookAction;
+  
+    [SerializeField] private PlayerInput playerInput;
 
+    void Awake()
+    {
+        if (playerInput == null)
+            playerInput = GetComponent<PlayerInput>();
 
+        if (playerInput != null)
+            lookAction = playerInput.actions.FindAction("Look");
+       
+    }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        lookAction = GetComponent<PlayerInput>().actions.FindAction("Look");
+        
     }
 
     public void OnLook(InputAction.CallbackContext context)

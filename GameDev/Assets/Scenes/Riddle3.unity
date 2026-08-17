@@ -244,7 +244,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ava
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -332,6 +332,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475978638332576859, guid: edbb7963702492045afa1b5f145f1632, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 1855659362}
     - target: {fileID: 4006276569445822279, guid: edbb7963702492045afa1b5f145f1632, type: 3}
       propertyPath: m_Camera
       value: 
@@ -464,10 +468,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72cc6e7ca83055438a33629b18daa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteUI
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 1855659362}
   notePanel: {fileID: 1584220664}
   noteText: {fileID: 152971752}
---- !u!114 &1650535622
+--- !u!114 &1650535629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -479,10 +483,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44137b810d620e54d93d2a1bb21fd166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WhiteboardRiddle
-  notePanel: {fileID: 0}
+  notePanel: {fileID: 1584220664}
   playerInput: {fileID: 1855659362}
-  availableText: {fileID: 561648802}
-  selectedText: {fileID: 2121555136}
+  leftText: {fileID: 561648802}
+  rightText: {fileID: 2121555136}
   riddleText: {fileID: 152971752}
 --- !u!1 &1693892865
 GameObject:
@@ -911,7 +915,7 @@ PrefabInstance:
       addedObject: {fileID: 1650535621}
     - targetCorrespondingSourceObject: {fileID: 2832149144376456534, guid: 4c2afe531d94c494c9465738a9e76701, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1650535622}
+      addedObject: {fileID: 1650535629}
   m_SourcePrefab: {fileID: 100100000, guid: 4c2afe531d94c494c9465738a9e76701, type: 3}
 --- !u!1001 &2047815782
 PrefabInstance:
@@ -1072,14 +1076,14 @@ PrefabInstance:
     - target: {fileID: 2069856004896477125, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1650535622}
+      objectReference: {fileID: 1650535629}
     - target: {fileID: 2069856004896477125, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PreviousAvailable
+      value: previousLeft
       objectReference: {fileID: 0}
     - target: {fileID: 2069856004896477125, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WhiteboardRiddle, Assembly-CSharp
+      value: WhiteBoard, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2128563173023517194, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1204,14 +1208,14 @@ PrefabInstance:
     - target: {fileID: 4736262744102840181, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1650535622}
+      objectReference: {fileID: 1650535629}
     - target: {fileID: 4736262744102840181, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PreviousSelected
+      value: previousRight
       objectReference: {fileID: 0}
     - target: {fileID: 4736262744102840181, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WhiteboardRiddle, Assembly-CSharp
+      value: WhiteBoard, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4984747745930993837, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_LocalScale.x
@@ -1231,7 +1235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5734496766572557567, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_text
-      value: Selct
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5734496766572557567, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_fontStyle
@@ -1260,14 +1264,14 @@ PrefabInstance:
     - target: {fileID: 6196899623774575760, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1650535622}
+      objectReference: {fileID: 1650535629}
     - target: {fileID: 6196899623774575760, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextAvailable
+      value: nextLeft
       objectReference: {fileID: 0}
     - target: {fileID: 6196899623774575760, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WhiteboardRiddle, Assembly-CSharp
+      value: WhiteBoard, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6603995286654926010, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_Color.a
@@ -1276,7 +1280,7 @@ PrefabInstance:
     - target: {fileID: 6858530323418903501, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1650535622}
+      objectReference: {fileID: 0}
     - target: {fileID: 6858530323418903501, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UpdateUI
@@ -1316,14 +1320,14 @@ PrefabInstance:
     - target: {fileID: 8426319025166371488, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1650535622}
+      objectReference: {fileID: 1650535629}
     - target: {fileID: 8426319025166371488, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextSelected
+      value: nextRight
       objectReference: {fileID: 0}
     - target: {fileID: 8426319025166371488, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WhiteboardRiddle, Assembly-CSharp
+      value: WhiteBoard, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8463808158679965514, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_Name
@@ -1331,7 +1335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8495541357883143862, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_text
-      value: test
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8495541357883143862, guid: 63390866723be724193e318891ba6323, type: 3}
       propertyPath: m_fontColor.b
