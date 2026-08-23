@@ -57,12 +57,32 @@ public class WhiteBoard : MonoBehaviour
     private int selectedLeft; // index of 7
     private int selectedRight; // index of C
 
+    private int point = 0; 
+
+    InputAction close;
+    InputAction add;
+    InputAction reset;
+    InputAction subtract;
+    InputAction goRight;
+    public GameObject uiPanel;
+    InputAction goLeft;
+    private bool isController = false;
+
+    [SerializeField]  private InteractWithDoor interactWithDoor;
+
+
     private void Awake()
     {
         if (player == null)
             player = FindFirstObjectByType<Player>();
 
         select = playerInput.actions.FindAction("Select");
+        close = playerInput.actions.FindAction("Close");
+        add = playerInput.actions.FindAction("AddToCode");
+        subtract = playerInput.actions.FindAction("SubtractFromCode");
+        goLeft = playerInput.actions.FindAction("Left");
+        goRight = playerInput.actions.FindAction("Right");
+        reset = playerInput.actions.FindAction("Reset");
     }
 
 
@@ -131,7 +151,7 @@ public class WhiteBoard : MonoBehaviour
     }
     public void swapChar()
     {
-        Debug.Log($"🔄 swapChar: selectedLeft='{selectedLeft}', selectedRight='{selectedRight}'");
+        Debug.Log($"swapChar: selectedLeft='{selectedLeft}', selectedRight='{selectedRight}'");
 
         if (leftPlusWasLast)
         {
@@ -158,6 +178,14 @@ public class WhiteBoard : MonoBehaviour
             swap(selectedLeft, selectedRight);
             swapLeftRight();
         }
+        compareSolution();
+    }
+
+    private void swapForControloler()
+    {
+        swap(selectedLeft, selectedRight);
+        swapLeftRight();
+        compareSolution();
     }
 
     public void nextLeft()
@@ -245,7 +273,17 @@ public class WhiteBoard : MonoBehaviour
         updateUI();
     }
 
+      public void HideWhiteboard()
+    {
+        uiPanel.SetActive(false);
+        FreezeManager.Unfreeze();
+        FreezeManager.HideCursor();
+    }
 
+        public bool IsNoteActive()
+    {
+        return uiPanel.activeSelf;
+    } 
 
     // Update is called once per frame
     void Update()
@@ -254,10 +292,73 @@ public class WhiteBoard : MonoBehaviour
             return;
 
         if (select.WasPressedThisFrame() &&
-            notePanel.activeSelf)
+            notePanel.activeSelf && !isController)
         {
             swapChar();
+        }else if(select.WasPressedThisFrame() &&
+            notePanel.activeSelf && isController)
+        {
+            swapForControloler();
+            isController = false;
         }
+        if (goLeft.WasPressedThisFrame()&&point==1)
+        {
+            isController = true;
+            point = 0;
+        }
+        if (goRight.WasPressedThisFrame() && point == 0)
+        {
+            isController = true;
+            point = 1;
+        }
+        if (add.WasPressedThisFrame())
+        {
+            isController = true;
+            if (point == 0)
+            {
+                nextLeft();
+            }if(point == 1)
+            {
+                nextRight();
+            }
+        }
+        if (subtract.WasPressedThisFrame())
+        {
+            isController = true;
+            if (point == 0)
+            {
+                previousLeft();
+            }if(point == 1)
+            {
+                previousRight();
+            }
+        }
+          if (uiPanel.activeSelf && close.IsPressed())
+        {
+            HideWhiteboard();
+        }
+        if (reset.WasPressedThisFrame())
+        {
+            resetRiddle();
+        }
+    }
 
+   private void compareSolution()
+    {
+        string currentText = new string(encryptedText);
+
+        string correctText =
+            "Meist ist es besser die ganze Warheit zu wissen egal, ob du dir von vielen Details die Warheit denken kannst!";
+
+        if (currentText == correctText)
+        {
+            interactWithDoor.setCanInteract(true);
+            GameState.hasSolvedRiddle3 = true;
+        }
+        else
+        {
+            interactWithDoor.setCanInteract(false);
+            GameState.hasSolvedRiddle3 = false;
+        }
     }
 }

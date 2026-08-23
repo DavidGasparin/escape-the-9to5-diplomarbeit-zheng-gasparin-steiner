@@ -94,7 +94,7 @@ public class Save : MonoBehaviour
             feedbackText.color = Color.green;
             open = true;
             interactWithDoor.setCanInteract(true);
-
+            GameState.hasSolvedRiddle1 = true;
         }
         UpdateSave();
     } 

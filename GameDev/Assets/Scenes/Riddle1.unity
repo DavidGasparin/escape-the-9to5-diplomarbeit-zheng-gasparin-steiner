@@ -1788,6 +1788,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 4105824714913552969, guid: b4d38f2a04e28214aac1fe5ca4852056, type: 3}
+      propertyPath: isForward
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105824714913552969, guid: b4d38f2a04e28214aac1fe5ca4852056, type: 3}
+      propertyPath: nextScene
+      value: Riddle2
+      objectReference: {fileID: 0}
     - target: {fileID: 4359308002994996628, guid: b4d38f2a04e28214aac1fe5ca4852056, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.27

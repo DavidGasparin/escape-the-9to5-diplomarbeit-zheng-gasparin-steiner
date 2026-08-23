@@ -1,3 +1,4 @@
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +7,8 @@ public class InteractWithButton : MonoBehaviour, Interactable
 
     public static InteractWithButton Instance;
     private bool canInteract = true;
+    [SerializeField]  private InteractWithDoor2D interactWithDoor;
+
 
     private void Awake()
     {
@@ -30,7 +33,7 @@ public class InteractWithButton : MonoBehaviour, Interactable
                 }
             }
         }
-
+        interactWithDoor.setCanInteract(true);
     }
 
     public void setCanInteract(bool value)
