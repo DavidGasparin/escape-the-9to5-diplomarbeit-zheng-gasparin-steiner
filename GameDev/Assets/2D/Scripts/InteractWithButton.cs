@@ -1,6 +1,4 @@
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class InteractWithButton : MonoBehaviour, Interactable
 {
@@ -22,6 +20,7 @@ public class InteractWithButton : MonoBehaviour, Interactable
 
     public void Interact()
     {
+        interactWithDoor.setCanInteract(true);
         {
             int layer = LayerMask.NameToLayer("GroundNormal");
 
@@ -32,8 +31,7 @@ public class InteractWithButton : MonoBehaviour, Interactable
                     obj.SetActive(false);
                 }
             }
-        }
-        interactWithDoor.setCanInteract(true);
+        } 
     }
 
     public void setCanInteract(bool value)

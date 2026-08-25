@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 201e1adef91a949499efe9542be67380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractWithButton
+  interactWithDoor: {fileID: 1135565587}
 --- !u!212 &104571292
 SpriteRenderer:
   serializedVersion: 2
@@ -4209,7 +4210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aab95e1618187249a4aca6fa40bbfd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractWithDoor2D
-  isForward: 1
+  destination: Riddle3
   canInteract: 0
 --- !u!212 &1135565588
 SpriteRenderer:
@@ -4713,7 +4714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aab95e1618187249a4aca6fa40bbfd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractWithDoor2D
-  isForward: 0
+  destination: Riddle2
   canInteract: 1
 --- !u!212 &1785772976
 SpriteRenderer:

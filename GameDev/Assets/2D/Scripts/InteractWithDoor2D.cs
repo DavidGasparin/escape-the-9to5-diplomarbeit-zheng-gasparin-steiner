@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,8 +6,7 @@ public class InteractWithDoor2D : MonoBehaviour, Interactable
 {
      public static InteractWithDoor2D Instance;
 
-    public bool isForward = true;
-
+    [SerializeField] String destination;
     public bool canInteract = false;
 
     private void Awake()
@@ -16,6 +16,20 @@ public class InteractWithDoor2D : MonoBehaviour, Interactable
 
     public bool CanInteract()
     {
+        if (GameState.hasSolvedRiddle2)
+        {
+            canInteract = true;
+
+            int layer = LayerMask.NameToLayer("GroundNormal");
+
+            foreach (GameObject obj in FindObjectsOfType<GameObject>())
+            {
+                if (obj.layer == layer)
+                {
+                    obj.SetActive(false);
+                }
+            }
+        }
         if (GameState.getFromName(SceneManager.GetActiveScene().name))
         {
             setCanInteract(true);
@@ -25,30 +39,12 @@ public class InteractWithDoor2D : MonoBehaviour, Interactable
 
     public void Interact()
     {
-        int currentIndex = SceneManager.GetActiveScene().buildIndex;
-
-        int targetIndex = 0;
-
-        if (isForward)
-        {
-            SceneManager.LoadScene("Riddle3");;
+        if(destination != "Riddle2"){
+            GameState.hasSolvedRiddle2 = true;
+            GameState.hasSolvePlatformer = true;
+            SceneManager.LoadScene(destination);
         }
-        else
-        {
-            targetIndex = currentIndex - 1;
-        }
-
-        if (targetIndex < 0 || targetIndex >= SceneManager.sceneCountInBuildSettings)
-        {
-            Debug.LogWarning($"Keine Scene an Index {targetIndex}!");
-            return;
-        }
-
-        Debug.Log($"Wechsle von Index {currentIndex} zu Index {targetIndex}");
-
-        GameState.hasSolvedRiddle2 = true;
-        GameState.hasSolvePlatformer = true;
-        SceneManager.LoadScene(targetIndex);
+        SceneManager.LoadScene(destination);
     } 
 
     public void setCanInteract(bool value)

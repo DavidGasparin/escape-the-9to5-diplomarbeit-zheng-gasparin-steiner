@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2DPlatformer.unity
     guid: 25f907c612c3dc64595faf64f297094f
+  - enabled: 1
+    path: Assets/Scenes/Riddle3.unity
+    guid: 035b6c2a45152ce46b6ba62946cc1d24
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

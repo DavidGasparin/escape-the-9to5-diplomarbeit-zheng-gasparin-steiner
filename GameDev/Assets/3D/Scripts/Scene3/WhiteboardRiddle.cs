@@ -1,7 +1,4 @@
-﻿using JetBrains.Annotations;
-using System.Linq;
 using TMPro;
-using Unity.Profiling.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -83,6 +80,7 @@ public class WhiteBoard : MonoBehaviour
         goLeft = playerInput.actions.FindAction("Left");
         goRight = playerInput.actions.FindAction("Right");
         reset = playerInput.actions.FindAction("Reset");
+        updateUI();
     }
 
 
@@ -198,8 +196,6 @@ public class WhiteBoard : MonoBehaviour
         updateUI();
     }
 
-   
-
     public void previousLeft()
     {
         leftPlusWasLast = false;
@@ -208,8 +204,7 @@ public class WhiteBoard : MonoBehaviour
         rightMinusWasLast = false;
         selectedLeft = getPreviousChar(left, selectedLeft);
         updateUI();
-        
-
+    
     }
 
     public void nextRight()
@@ -336,6 +331,9 @@ public class WhiteBoard : MonoBehaviour
           if (uiPanel.activeSelf && close.IsPressed())
         {
             HideWhiteboard();
+        }else if (uiPanel.activeSelf)
+        {
+            updateUI();
         }
         if (reset.WasPressedThisFrame())
         {
