@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject optionsPanel;
+    public AudioMixer audioMixer;
+
 
     public void NewGame()
     {
@@ -37,5 +40,15 @@ public class MainMenu : MonoBehaviour
     public void TestButton()
     {
         Debug.Log("Button funktioniert!");
+    }
+
+
+    public void VsyncOn(bool isOn)
+    {
+        QualitySettings.vSyncCount = isOn ? 1 : 0;
+    }
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("Volume", volume);
     }
 }
