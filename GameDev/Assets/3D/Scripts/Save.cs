@@ -1,10 +1,11 @@
+using System;
+using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
-using System;
 using UnityEngine.AI;
-using System.Security.Cryptography.X509Certificates;
+using UnityEngine.Audio;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Save : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Save : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     private Player player;
     private PlayerLook camera;
+    [SerializeField] public SoundManager soundManager;
+
 
     [SerializeField]  private InteractWithDoor interactWithDoor;
 
@@ -49,6 +52,7 @@ public class Save : MonoBehaviour
         if (camera == null)
             camera = FindFirstObjectByType<PlayerLook>();
         
+       
         FreezeManager.Init(player, camera);
         Instance = this;
         Debug.Log("PlayerInput: " + playerInput);
@@ -68,6 +72,7 @@ public class Save : MonoBehaviour
         FreezeManager.Freeze();
         FreezeManager.ShowCursor();
         Accept();
+        soundManager.Play();
     }
 
     public void Plus(int stelle)
@@ -144,5 +149,8 @@ public class Save : MonoBehaviour
     {
         return uiPanel.activeSelf;
     }
+
+
+    
 
 }

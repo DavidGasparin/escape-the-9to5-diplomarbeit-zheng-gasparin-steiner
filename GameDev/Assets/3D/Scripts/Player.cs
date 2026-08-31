@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     //@Todo: Spieler soll langsamer werden wen gehen aufhört und nicht dierekt stoppen -> speed immer halbieren oder so
     [SerializeField] private float initialMovespeed = 5.0f;
     [SerializeField] private float sprintMulitiplyer = 1.5f;
-
+    [SerializeField] public SoundManager soundManager;
     private float sprintSpeed;
 
     private float movespeed;
@@ -47,7 +47,17 @@ public class Player : MonoBehaviour
         }
 
         MovePlayer(movespeed);
-    
+
+        if (rb.linearVelocity.magnitude > 0.1f && !soundManager.IsPlaying())
+        {
+            soundManager.Play();
+        }
+        else if (rb.linearVelocity.magnitude <= 0.1f && soundManager.IsPlaying())
+        {
+            soundManager.Stop();
+        }
+
+
     }
 
     void MovePlayer(float speed)
