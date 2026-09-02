@@ -16,7 +16,9 @@ public class Save : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     private Player player;
     private PlayerLook camera;
-    [SerializeField] public SoundManager soundManager;
+    [SerializeField] public SoundManager soundManagerOpen;
+    [SerializeField] public SoundManager soundManagerAccept;
+
 
 
     [SerializeField]  private InteractWithDoor interactWithDoor;
@@ -34,9 +36,6 @@ public class Save : MonoBehaviour
 
     InputAction left;
     InputAction select;
-
-
-
 
     private int firstNumber = 0;
     private int secoundNumber = 0;
@@ -72,7 +71,7 @@ public class Save : MonoBehaviour
         FreezeManager.Freeze();
         FreezeManager.ShowCursor();
         Accept();
-        soundManager.Play();
+        soundManagerOpen.Play();
     }
 
     public void Plus(int stelle)
@@ -100,6 +99,7 @@ public class Save : MonoBehaviour
             open = true;
             interactWithDoor.setCanInteract(true);
             GameState.hasSolvedRiddle1 = true;
+            soundManagerAccept.Play();
         }
         UpdateSave();
     } 

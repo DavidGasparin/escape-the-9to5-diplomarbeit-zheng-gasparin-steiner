@@ -7,6 +7,11 @@ public class InteractionWithBookshelf : MonoBehaviour, Interactable
     [SerializeField] private float moveDistance = 2.5f;
     [SerializeField] private float moveSpeed = 3f;
 
+    private bool hasInteracted = false;
+
+    [SerializeField] public SoundManager soundManager;
+
+
     private static int counter = 0;
 
     private Vector3 targetPosition;
@@ -21,6 +26,10 @@ public class InteractionWithBookshelf : MonoBehaviour, Interactable
 
     public bool CanInteract()
     {
+        if (hasInteracted)
+        {
+            return false; 
+        }
         if (counter >= 4)
             hasReadNotes = true;
 
@@ -43,6 +52,7 @@ public class InteractionWithBookshelf : MonoBehaviour, Interactable
             return;
 
         Debug.Log("Bücherregal bewegt sich nach rechts.");
+        soundManager.Play();
         bewegtSich = true;
     }
 
@@ -68,6 +78,7 @@ public class InteractionWithBookshelf : MonoBehaviour, Interactable
             bewegtSich = false;
 
             Debug.Log("Bücherregal ist am Ziel.");
+            hasInteracted = true;
         }
     }
 }

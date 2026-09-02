@@ -3,6 +3,9 @@ using UnityEngine;
 public class InteractWithNotes : MonoBehaviour, Interactable
 {
     public static bool canInteract = true;
+
+    [SerializeField] public SoundManager soundManager;
+
     private int increment = 1;
 
     [TextArea]
@@ -16,6 +19,7 @@ public class InteractWithNotes : MonoBehaviour, Interactable
     {
         Debug.Log(" Interact wurde aufgerufen auf: " + gameObject.name);
         NoteUI.Instance.ShowNote(noteText);
+        soundManager.Play();
 
         // counter um 1 erhöhen
         InteractionWithBookshelf.incrementCounter(increment);

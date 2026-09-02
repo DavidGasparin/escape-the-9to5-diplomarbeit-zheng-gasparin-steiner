@@ -7,9 +7,14 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private float startAt = 1.25f;
     [SerializeField] private bool loop;
 
+    [SerializeField] private float speed;
+
+
+
     private void Awake()
     {
         audioSource.loop = loop;
+        audioSource.pitch = speed;
         audioSource.time = startAt;
     }
     private void Update()
@@ -26,6 +31,18 @@ public class SoundManager : MonoBehaviour
         audioSource.time = startAt;
         audioSource.Play();
     }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+        audioSource.pitch = speed;
+    }
+
+    public float getSpeed()
+    {
+        return speed;
+    }
+
 
     public void Stop()
     {

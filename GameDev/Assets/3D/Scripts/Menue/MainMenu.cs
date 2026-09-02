@@ -49,8 +49,14 @@ public class MainMenu : MonoBehaviour
     }
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("Volume", volume);
-    }
+        Debug.Log("AudioMixer: " + audioMixer.name);
 
+        bool success = audioMixer.SetFloat(
+            "Attenuation",
+            Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20f
+        );
+
+        Debug.Log("SetFloat erfolgreich: " + success);
+    }
 
 }

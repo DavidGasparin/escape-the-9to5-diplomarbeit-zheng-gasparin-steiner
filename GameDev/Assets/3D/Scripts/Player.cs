@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float initialMovespeed = 5.0f;
     [SerializeField] private float sprintMulitiplyer = 1.5f;
     [SerializeField] public SoundManager soundManager;
+
+    private float audioSpeedNormal = 1;
+    private float audioSprintSpeed; 
     private float sprintSpeed;
 
     private float movespeed;
@@ -18,6 +21,10 @@ public class Player : MonoBehaviour
     InputAction move;
     InputAction sprint;
     bool isFrozen = false;
+    private Vector2 input;
+
+
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is createdd
@@ -31,6 +38,7 @@ public class Player : MonoBehaviour
         //rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         sprintSpeed = initialMovespeed * sprintMulitiplyer;
+        audioSprintSpeed = audioSpeedNormal * sprintMulitiplyer;
     }
 
     // Update is called once per frame
@@ -48,21 +56,34 @@ public class Player : MonoBehaviour
 
         MovePlayer(movespeed);
 
-        if (rb.linearVelocity.magnitude > 0.1f && !soundManager.IsPlaying())
+        if (input.magnitude > 0.1f)
         {
-            soundManager.Play();
+            if (!soundManager.IsPlaying())
+            {
+                soundManager.Play();
+            }
+
+            if (sprint.IsPressed())
+            {
+                soundManager.SetSpeed(audioSprintSpeed);
+            }
+            else
+            {
+                soundManager.SetSpeed(audioSpeedNormal);
+            }
         }
-        else if (rb.linearVelocity.magnitude <= 0.1f && soundManager.IsPlaying())
+        else
         {
-            soundManager.Stop();
+            if (soundManager.IsPlaying())
+            {
+                soundManager.Stop();
+            }
         }
-
-
     }
 
     void MovePlayer(float speed)
     {
-        Vector2 input = move.ReadValue<Vector2>();
+        input = move.ReadValue<Vector2>();
         
         Vector3 moveDir = (transform.forward * input.y + transform.right * input.x).normalized;
         rb.MovePosition(rb.position + moveDir * speed * Time.deltaTime);
@@ -86,14 +107,11 @@ public class Player : MonoBehaviour
 
     public void freezePLayer()
     {
-        
         isFrozen = true;
-       
     }
 
     public void unfreezePlayer()
     {
-
         isFrozen = false;
     }
 
