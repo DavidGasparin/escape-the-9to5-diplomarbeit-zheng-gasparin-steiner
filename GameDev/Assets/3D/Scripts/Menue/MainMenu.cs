@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject optionsPanel;
-    public AudioMixer audioMixer;
+    [SerializeField] private AudioMixer audioMixer;
 
 
     public void NewGame()
@@ -42,20 +42,20 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Button funktioniert!");
     }
 
-
     public void VsyncOn(bool isOn)
     {
         QualitySettings.vSyncCount = isOn ? 1 : 0;
     }
+
     public void SetVolume(float volume)
     {
         Debug.Log("AudioMixer: " + audioMixer.name);
 
+    
         bool success = audioMixer.SetFloat(
-            "Attenuation",
+            "Volume",
             Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20f
         );
-
         Debug.Log("SetFloat erfolgreich: " + success);
     }
 
