@@ -21,6 +21,8 @@ public class MainMenu : MonoBehaviour
         BuildDropdown();
     }
 
+    
+
     public void NewGame()
     {
         Debug.Log("Neues Spiel gestartet");
@@ -100,6 +102,11 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.Save();
 
         Debug.Log($"Index: {selectedIndex} | FPS: {(fps == -1 ? "Unlimited" : fps.ToString())}");
+    }
+
+    public void SetSensitivity(float newSensitivity)
+    {        
+      PlayerLook.SetSensitivity(newSensitivity);
     }
 
 }

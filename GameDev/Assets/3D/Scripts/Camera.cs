@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerLook : MonoBehaviour
 {
-    public float sensitivity = 500f;
+    public static float sensitivity = 500f;
     public Transform playerBody;
 
     float xRotation = 0f;
@@ -28,7 +28,8 @@ public class PlayerLook : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        
+        sensitivity = PlayerPrefs.GetFloat("Sensitivity", 500f);
+
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -65,5 +66,13 @@ public class PlayerLook : MonoBehaviour
         cameraFrozen = false;
         lookInput = Vector2.zero;
         if (lookAction != null) lookAction.Enable();
+    }
+
+
+    public static void SetSensitivity( float newSensitivity)
+    {
+        sensitivity = newSensitivity;
+        PlayerPrefs.SetFloat("Sensitivity", newSensitivity);
+        PlayerPrefs.Save();
     }
 }
