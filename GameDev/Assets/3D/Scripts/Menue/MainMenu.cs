@@ -80,10 +80,10 @@ public class MainMenu : MonoBehaviour
     public void OnFPSDropdownChanged(int indexFromEvent)
 
     {
-      
+        int selectedIndex = fpsDropdown.value;
 
         int fps;
-        switch (indexFromEvent)
+        switch (selectedIndex)
         {
             case 0: fps = 30; break;
             case 1: fps = 60; break;
@@ -99,7 +99,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("FPSLimit", fps);
         PlayerPrefs.Save();
 
-        Debug.Log($"Index: {indexFromEvent} | FPS: {(fps == -1 ? "Unlimited" : fps.ToString())}");
+        Debug.Log($"Index: {selectedIndex} | FPS: {(fps == -1 ? "Unlimited" : fps.ToString())}");
     }
 
 }
