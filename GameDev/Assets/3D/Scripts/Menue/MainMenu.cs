@@ -53,7 +53,7 @@ public class MainMenu : MonoBehaviour
 
     
         bool success = audioMixer.SetFloat(
-            "Volume",
+            "MasterAttenuation",
             Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20f
         );
         Debug.Log("SetFloat erfolgreich: " + success);
