@@ -53,9 +53,6 @@ public class MainMenu : MonoBehaviour
 
         bool success = audioMixer.SetFloat("MyExposedParam", dB);
 
-        Debug.Log("Slider: " + volume);
-        Debug.Log("dB: " + dB);
-        Debug.Log("Erfolgreich: " + success);
     }
 
 }
