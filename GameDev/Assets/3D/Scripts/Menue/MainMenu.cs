@@ -49,14 +49,13 @@ public class MainMenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        Debug.Log("AudioMixer: " + audioMixer.name);
+        float dB = Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20f;
 
-    
-        bool success = audioMixer.SetFloat(
-            "MasterAttenuation",
-            Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20f
-        );
-        Debug.Log("SetFloat erfolgreich: " + success);
+        bool success = audioMixer.SetFloat("MyExposedParam", dB);
+
+        Debug.Log("Slider: " + volume);
+        Debug.Log("dB: " + dB);
+        Debug.Log("Erfolgreich: " + success);
     }
 
 }
