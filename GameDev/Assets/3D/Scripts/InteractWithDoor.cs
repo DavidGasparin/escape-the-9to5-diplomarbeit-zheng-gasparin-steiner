@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,9 @@ public class InteractWithDoor : MonoBehaviour, Interactable
     public bool isForward = true;
 
     public bool canInteract = false;
+
+    [SerializeField] String destination;
+
 
     private void Awake()
     {
@@ -22,8 +26,8 @@ public class InteractWithDoor : MonoBehaviour, Interactable
         }
         return canInteract;
     }
-
-    public void Interact()
+    // erster stand verbesserung der scene load logik ist in der unteren interact
+    /*public void Interact()
     {
         int currentIndex = SceneManager.GetActiveScene().buildIndex;
 
@@ -47,7 +51,14 @@ public class InteractWithDoor : MonoBehaviour, Interactable
         Debug.Log($"Wechsle von Index {currentIndex} zu Index {targetIndex}");
 
         SceneManager.LoadScene(targetIndex);
-    } 
+    }
+    */
+
+    public void Interact()
+    {
+        SceneManager.LoadScene(destination);
+    }
+
 
     public void setCanInteract(bool value)
     {

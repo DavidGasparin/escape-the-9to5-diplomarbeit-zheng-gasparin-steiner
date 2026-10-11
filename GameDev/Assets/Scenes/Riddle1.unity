@@ -637,10 +637,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   audioSource: {fileID: 1436210113}
-  stopAt: 2.75
-  startAt: 2
+  stopAt: 1
+  startAt: 0
   loop: 0
-  speed: 5
+  speed: 1
 --- !u!4 &358563757 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3910990755373119420, guid: e662247384afb1f4e824d6a9131abcb2, type: 3}
@@ -2048,6 +2048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractWithDoor
   isForward: 1
   canInteract: 0
+  destination: Riddle2
 --- !u!1001 &1685051376
 PrefabInstance:
   m_ObjectHideFlags: 0

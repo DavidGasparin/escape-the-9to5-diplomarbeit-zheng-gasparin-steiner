@@ -1,7 +1,9 @@
+using Mono.Cecil.Cil;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 //test
 public class Player : MonoBehaviour
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
     PlayerInput playerInput;
     InputAction move;
     InputAction sprint;
+    InputAction close;
     bool isFrozen = false;
     private Vector2 input;
 
@@ -35,19 +38,47 @@ public class Player : MonoBehaviour
         playerInput = this.GetComponent<PlayerInput>();
         move= this.playerInput.actions.FindAction("Move");
         sprint = this.playerInput.actions.FindAction("Sprint");
+        close = playerInput.actions.FindAction("Close");
         //rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         sprintSpeed = initialMovespeed * sprintMulitiplyer;
         audioSprintSpeed = audioSpeedNormal * sprintMulitiplyer;
     }
 
-    // Update is called once per frame
+
+    private bool blockMenuForOneFrame = false;
+
     void Update()
     {
+
+        if (isFrozen)
+            return;
+
         movespeed = initialMovespeed;
 
-        if (isFrozen)  
+        bool uiActive = IsAnyUIActive();
+
+    
+        if (uiActive)
+        {
+            blockMenuForOneFrame = true;
             return;
+        }
+
+        
+        if (blockMenuForOneFrame)
+        {
+            blockMenuForOneFrame = false;
+            return;
+        }
+
+    
+        if (close.WasPressedThisFrame())
+        {
+            menuScreen();
+        
+        }
+
 
         if (sprint.IsPressed())
         {
@@ -80,6 +111,35 @@ public class Player : MonoBehaviour
             }
         }
     }
+    bool IsAnyUIActive()
+    {
+        return
+            (NoteUI.Instance != null &&
+             NoteUI.Instance.IsNoteActive()) ||
+
+            (NoteUIDisplay.Instance != null &&
+             NoteUIDisplay.Instance.IsNoteActive()) ||
+
+            (Display.Instance != null &&
+             Display.Instance.IsNoteActive()) ||
+
+            (Save.Instance != null &&
+             Save.Instance.IsNoteActive());
+    }
+
+    void menuScreen()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GameState.setCurrentScene(SceneManager.GetActiveScene().name);
+        unfreezePlayer();
+        // alles speichern in db
+        GameState.saveeverything();
+        SceneManager.LoadScene("MainMenue");
+    }
+
+
+    
 
     void MovePlayer(float speed)
     {

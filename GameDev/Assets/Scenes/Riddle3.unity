@@ -235,6 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractWithDoor
   isForward: 0
   canInteract: 1
+  destination: Riddle2
 --- !u!65 &249838206
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -275,6 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractWithDoor
   isForward: 1
   canInteract: 0
+  destination: 
 --- !u!65 &271845365
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2435,6 +2437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 260999ff34250444fa35d937834a5bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractWithNotes
+  soundManager: {fileID: 0}
   noteText: 
 --- !u!114 &2126456045
 MonoBehaviour:

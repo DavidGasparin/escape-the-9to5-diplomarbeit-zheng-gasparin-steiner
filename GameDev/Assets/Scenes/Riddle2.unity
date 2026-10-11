@@ -1274,6 +1274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractWithDoor
   isForward: 0
   canInteract: 1
+  destination: Riddle1
 --- !u!1001 &186510963956511764
 PrefabInstance:
   m_ObjectHideFlags: 0

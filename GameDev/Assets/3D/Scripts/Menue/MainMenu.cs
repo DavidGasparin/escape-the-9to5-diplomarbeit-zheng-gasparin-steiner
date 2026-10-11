@@ -42,7 +42,9 @@ public class MainMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-        Debug.Log("Spielstand laden");
+        GameState.loadeverything();
+        SceneManager.LoadScene(GameState.getCurrentScene());
+       Debug.Log("Spielstand laden");
     }
 
     public void QuitGame()

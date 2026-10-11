@@ -7,10 +7,18 @@ public class Display : MonoBehaviour{
 
     InputAction select;
     PlayerInput playerInput;
+    public static Display Instance;
 
     [SerializeField] private GameObject notePanel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+
+
     void Start()
     {
         playerInput = this.GetComponent<PlayerInput>();
@@ -32,4 +40,9 @@ public class Display : MonoBehaviour{
         Debug.Log("Button Pressed");
         SceneManager.LoadScene("2DPlatformer");
     }
+    public bool IsNoteActive()
+    {
+        return notePanel.activeSelf;
+    }
+
 }

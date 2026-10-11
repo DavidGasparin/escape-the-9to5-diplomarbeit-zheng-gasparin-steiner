@@ -4,8 +4,8 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private float stopAt = 2.75f;
-    [SerializeField] private float startAt = 1.25f;
+    [SerializeField] private float stopAt;
+    [SerializeField] private float startAt;
     [SerializeField] private bool loop;
 
     [SerializeField] private float speed;
